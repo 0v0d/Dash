@@ -1,0 +1,161 @@
+#include	"Stage.h"
+
+void Stage::SetStage(int stageNo)
+{
+	char* stageName;
+	switch (stageNo)
+	{
+	case 1:
+		stageName = "Stage1.txt";
+		break;
+	case 2:
+		stageName = "Stage2.txt";
+		break;
+	default:
+		stageName = "Stage1.txt";
+	}
+	Load(stageName);
+}
+
+void Stage::Load(char* stageName)
+{
+	_file = fopen(stageName, "rt");
+	if (_file == NULL)return;
+	fseek(_file, 0, SEEK_END);
+	_fileSize = ftell(_file);
+	fseek(_file, 0, SEEK_SET);
+
+	_buffer = (char*)malloc(_fileSize + 1);
+	_fileSize = fread(_buffer, 1, _fileSize, _file);
+	_buffer[_fileSize] = '\0';
+
+
+	if (!_backTexture.Load(strtok(_buffer, ",")))return;
+	if (!_chipTexture.Load(strtok(NULL, ",")))return;
+	_chipSize = atof(strtok(NULL, ","));
+	_xSize = atoi(strtok(NULL, ","));
+	_ySize = atoi(strtok(NULL, ","));
+	_chipData = (char*)malloc(_xSize * _ySize);
+
+	for (int y = 0; y < _ySize; y++)
+		for (int x = 0; x < _xSize; x++)
+			_chipData[y * _xSize + x] = atoi(strtok(NULL, ","));
+
+	fclose(_file);
+	free(_buffer);
+}
+
+void Stage::Initialize()
+{
+	_screenWidth = g_pGraphics->GetTargetWidth();
+	_screenHeight = g_pGraphics->GetTargetHeight();
+	_backTextureWidth = _backTexture.GetWidth();
+	 _backTextureHeight = _backTexture.GetHeight();
+	 _stageSizeX = _chipSize * _xSize;
+	_player.Initialize();
+	_scrollX = 0;
+	_damage = false;
+	_goal = false;
+}
+
+void Stage::Update()
+{
+	_player.Update();
+
+	float ox = 0, oy = 0;
+	if(Collision(_player.GetCollisionRect(),_player.GetJumpRect(),ox,oy))
+	{
+		_player.CollisionStage(ox,oy);
+		_player.Damaged(GetDead());
+	}
+	_player.Goal(IsGoal());
+
+}
+
+bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, float& ox, float& oy)
+{
+	
+	if (playerCollision.Right - _scrollX > _screenWidth - _playerScrollPos)
+	{
+		_scrollX += (playerCollision.Right - _scrollX) - (_screenWidth - _playerScrollPos);
+		if (_scrollX >= _stageSizeX - _screenWidth)
+			_scrollX = _stageSizeX - _screenWidth;
+	}
+
+	_rect = false;
+	_leftChipSize = playerJumpRect.Left / _chipSize;
+	_rightChipSize = playerJumpRect.Right / _chipSize;
+	_topChipSize = playerJumpRect.Top / _chipSize;
+	_bottomChipSize = playerJumpRect.Bottom / _chipSize;
+
+	if (_leftChipSize < 0)
+		_leftChipSize = 0;
+
+	if (_topChipSize < 0)
+		_topChipSize = 0;
+
+	if (_rightChipSize >=_xSize)
+		_rightChipSize =_xSize - 1;
+
+	if (_bottomChipSize >= _ySize)
+		_bottomChipSize = _ySize - 1;
+
+	for (int y = _topChipSize; y <= _bottomChipSize; y++)
+		for (int x = _leftChipSize; x <= _rightChipSize; x++)
+		{
+			 CRectangle _chipRect(x * _chipSize, y * _chipSize, x * _chipSize + _chipSize, y * _chipSize + _chipSize);
+			 _chipNo = _chipData[y *_xSize + x] - 1;
+			if (_chipNo < 0 || _chipNo == _notCollisonChip)
+				continue;
+			if (_chipNo == _goalchiptop || _chipNo == _goalchipbottom || _chipNo == _goalchipmiddle)
+				_goal = true;
+			else if (_chipRect.CollisionRect(playerCollision))
+			{
+				_rect = true;
+				_damage = true;
+			}
+			else if (_chipRect.CollisionRect(playerJumpRect))
+			{
+				_rect = true;
+				oy += _chipRect.Top - playerJumpRect.Bottom;
+				playerJumpRect.Bottom += _chipRect.Top - playerJumpRect.Bottom;
+			}
+			if (_chipNo == _sankaku)
+				_damage = true;
+		}
+	return _rect;
+}
+
+void Stage::Render(void) {
+	
+	for (float y = ((int)-0 % _backTextureHeight) - _backTextureHeight; y < _screenHeight; y += _backTextureHeight)
+		for (float x = ((int)-_scrollX % _backTextureWidth) - _backTextureWidth; x < _screenWidth; x += _backTextureWidth)
+			_backTexture.Render(x, y);
+
+	_chipTextureSizeX = _chipTexture.GetWidth() / _chipSize;
+	for (int y = 0; y < _ySize; y++)
+		for (int x = 0; x < _xSize; x++)
+		{
+			char _chipNo = _chipData[y * _xSize + x] - 1;
+			if (_chipNo < 0)continue;
+			CRectangle cr(_chipSize * (_chipNo % _chipTextureSizeX), _chipSize * (_chipNo / _chipTextureSizeX), _chipSize * (_chipNo % _chipTextureSizeX + 1), _chipSize * (_chipNo / _chipTextureSizeX + 1));
+			_chipTexture.Render(-_scrollX + x * _chipSize, - 0 + y * _chipSize, cr);
+		}
+
+	if(!GetDead())
+		_player.Render(GetScrollX());
+}
+
+void Stage::Debug() 
+{
+	CGraphicsUtilities::RenderString(_debugPos.x, _debugPos.y, "ƒXƒNƒ[ƒ‹ X : %.0f", _scrollX);
+	_player.Debug(GetScrollX());
+}
+
+void Stage::Release()
+{
+	_chipTexture.Release();
+	_backTexture.Release();
+	_player.Release();
+	if(_chipData != nullptr)delete[]_chipData;
+}

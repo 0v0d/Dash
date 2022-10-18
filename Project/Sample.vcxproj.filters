@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager">
+      <UniqueIdentifier>{1e02adf6-4f17-4942-b431-8594400da0da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Game">
+      <UniqueIdentifier>{6f942d3f-4187-4094-8b51-0b03e81463b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Game\GameObject">
+      <UniqueIdentifier>{5d3de1af-0f1e-407e-9f31-c710387ba70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\Title">
+      <UniqueIdentifier>{9d676864-66bc-401d-bede-03d3c18e8349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\StageSelect">
+      <UniqueIdentifier>{bc99de19-5b3f-4779-9a67-2bc33c6c5971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\StageSelect\StageSelectObject">
+      <UniqueIdentifier>{e3ca20fb-a97f-4c16-aa19-3660f47c05d8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneContainer.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>ソース ファイル\SceneManager\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelect.cpp">
+      <Filter>ソース ファイル\SceneManager\StageSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StageClear.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="DeathCount.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ListManager.cpp">
+      <Filter>ソース ファイル\SceneManager\StageSelect\StageSelectObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StageList.cpp">
+      <Filter>ソース ファイル\SceneManager\StageSelect\StageSelectObject</Filter>
+    </ClCompile>
+    <ClCompile Include="IBaseScene.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StartTimeCount.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJump.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameApp.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneContainer.h">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ソース ファイル\SceneManager\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ソース ファイル\SceneManager\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelect.h">
+      <Filter>ソース ファイル\SceneManager\StageSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="StageClear.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathCount.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="StageList.h">
+      <Filter>ソース ファイル\SceneManager\StageSelect\StageSelectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ListManager.h">
+      <Filter>ソース ファイル\SceneManager\StageSelect\StageSelectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="IBaseScene.h">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StartTimeCount.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJump.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
