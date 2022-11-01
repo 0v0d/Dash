@@ -91,12 +91,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DeathCount.cpp" />
-    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="IBaseScene.cpp" />
     <ClCompile Include="ListManager.cpp" />
+    <ClCompile Include="MenuInput.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerJump.cpp" />
@@ -112,12 +112,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeathCount.h" />
-    <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="IBaseScene.h" />
     <ClInclude Include="ListManager.h" />
+    <ClInclude Include="MenuInput.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerJump.h" />

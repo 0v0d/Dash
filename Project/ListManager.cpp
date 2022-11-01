@@ -26,8 +26,11 @@ void ListManager::Render()
 	CGraphicsUtilities::RenderString(0, 0, "StageSelect");
 	_stageList->SetCursor(_cursor);
 	for (int i = 0; i < _stageValue; i++)
+	{
 		_stageList[i].Render();
-	
+		
+	}
+		
 
 	if(_debug)
 		CGraphicsUtilities::RenderString(_debugPos.x, _debugPos.y, "%d", _cursor);

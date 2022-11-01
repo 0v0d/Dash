@@ -35,14 +35,17 @@ void Stage::Load(char* stageName)
 	_chipSize = atof(strtok(NULL, ","));
 	_xSize = atoi(strtok(NULL, ","));
 	_ySize = atoi(strtok(NULL, ","));
-	_chipData = (char*)malloc(_xSize * _ySize);
-
+	_chipData = new char[_xSize * _ySize];
 	for (int y = 0; y < _ySize; y++)
+	{
 		for (int x = 0; x < _xSize; x++)
+		{
 			_chipData[y * _xSize + x] = atoi(strtok(NULL, ","));
+		}
+	}
 
 	fclose(_file);
-	free(_buffer);
+	delete _buffer;
 }
 
 void Stage::Initialize()
@@ -66,15 +69,15 @@ void Stage::Update()
 	if(Collision(_player.GetCollisionRect(),_player.GetJumpRect(),ox,oy))
 	{
 		_player.CollisionStage(ox,oy);
-		_player.Damaged(GetDead());
+		_player.SetDead(GetDead());
 	}
-	_player.Goal(IsGoal());
+	_player.SetGoal(IsGoal());
 
 }
 
 bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, float& ox, float& oy)
 {
-	
+
 	if (playerCollision.Right - _scrollX > _screenWidth - _playerScrollPos)
 	{
 		_scrollX += (playerCollision.Right - _scrollX) - (_screenWidth - _playerScrollPos);
@@ -89,22 +92,29 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 	_bottomChipSize = playerJumpRect.Bottom / _chipSize;
 
 	if (_leftChipSize < 0)
+	{
 		_leftChipSize = 0;
-
+	}
 	if (_topChipSize < 0)
+	{
 		_topChipSize = 0;
-
+	}
 	if (_rightChipSize >=_xSize)
-		_rightChipSize =_xSize - 1;
-
+	{
+		_rightChipSize = _xSize - 1;
+	}
 	if (_bottomChipSize >= _ySize)
+	{
 		_bottomChipSize = _ySize - 1;
+	}
+
 
 	for (int y = _topChipSize; y <= _bottomChipSize; y++)
+	{
 		for (int x = _leftChipSize; x <= _rightChipSize; x++)
 		{
-			 CRectangle _chipRect(x * _chipSize, y * _chipSize, x * _chipSize + _chipSize, y * _chipSize + _chipSize);
-			 _chipNo = _chipData[y *_xSize + x] - 1;
+			CRectangle _chipRect(x * _chipSize, y * _chipSize, x * _chipSize + _chipSize, y * _chipSize + _chipSize);
+			_chipNo = _chipData[y * _xSize + x] - 1;
 			if (_chipNo < 0 || _chipNo == _notCollisonChip)
 				continue;
 			if (_chipNo == _goalchiptop || _chipNo == _goalchipbottom || _chipNo == _goalchipmiddle)
@@ -123,11 +133,13 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 			if (_chipNo == _sankaku)
 				_damage = true;
 		}
+	}
+
 	return _rect;
 }
 
 void Stage::Render(void) {
-	
+
 	for (float y = ((int)-0 % _backTextureHeight) - _backTextureHeight; y < _screenHeight; y += _backTextureHeight)
 		for (float x = ((int)-_scrollX % _backTextureWidth) - _backTextureWidth; x < _screenWidth; x += _backTextureWidth)
 			_backTexture.Render(x, y);
@@ -146,7 +158,7 @@ void Stage::Render(void) {
 		_player.Render(GetScrollX());
 }
 
-void Stage::Debug() 
+void Stage::Debug()
 {
 	CGraphicsUtilities::RenderString(_debugPos.x, _debugPos.y, "ƒXƒNƒ[ƒ‹ X : %.0f", _scrollX);
 	_player.Debug(GetScrollX());
@@ -157,5 +169,8 @@ void Stage::Release()
 	_chipTexture.Release();
 	_backTexture.Release();
 	_player.Release();
-	if(_chipData != nullptr)delete[]_chipData;
+	if (_chipData != nullptr)
+	{
+		delete[]_chipData;
+	}
 }

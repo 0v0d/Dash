@@ -9,7 +9,6 @@ void StageSelect::Initialize()
 void StageSelect::Update()
 {
 	_listManager.Update();
-	
 	if(g_pInput->IsKeyPush(MOFKEY_SPACE))
 	{
 		switch (_listManager.GetCursor())

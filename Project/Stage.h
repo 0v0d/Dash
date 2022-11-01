@@ -19,7 +19,7 @@ private:
 	const int _goalchipmiddle = 24;
 	const int _sankaku = 8;
 	const int _notCollisonChip = 4;
-	char _chipNo;	
+	char _chipNo;
 	int _screenWidth;
 	int _screenHeight;
 	int _backTextureWidth;

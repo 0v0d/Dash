@@ -1,16 +1,23 @@
 #pragma once
+#include "GameMenu.h"
+#include "MenuInput.h"
 class Pause
 {
 private:
-	char* _title = "Pause";
+	GameMenu _menu;
+	MenuInput _input;
+	char* _title;
 	static const int _textCount = 2;
 	char* _text[_textCount] = {
-		"StageSelect",
-		"Exit"
+	"StageSelect",
+	"Exit"
 	};
+	bool _pause;
 public:
-	char* GetTitle() { return _title; }
-	int GetTextCount() { return _textCount; }
-	char** GetText() { return _text; }
+	void Initialize();
+	void Update();
+	void Render();
+	void Release();
+	bool IsPause() { return _pause; }
+	void ChangeScene();
 };
-

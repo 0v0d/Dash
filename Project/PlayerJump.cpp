@@ -13,7 +13,6 @@ void PlayerJump::Jump()
 		_jump = true;
 		_moveY += _jumpValue;
 	}
-	//test
 }
 
 void PlayerJump::CollisionStage()

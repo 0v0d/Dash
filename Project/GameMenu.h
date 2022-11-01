@@ -1,21 +1,12 @@
 #pragma once
-#include "StageClear.h"
-#include "Pause.h"
 #include "Mof.h"
 class GameMenu
 {
 private:
-	StageClear _stageClear;
-	Pause _pause;
-	int _cursor;
-	const int _cursorMin = 0;
-	const int _cursorMax = 1;
-	bool _stop;
-	bool _sceneChange;
-	bool _goal;
-	int _count;
-	char* _title;
-	char** _text;
+	int _cursor = 0;
+	int _count = 0;
+	char* _title = nullptr;
+	char** _text = nullptr;
 	const int strIndex = 1;
 	CRectangle _rect;
 	CRectangle _headerRect;
@@ -27,21 +18,11 @@ private:
 	float _rectWidth;
 	float _rectHeight;
 	const float _half = 0.5;
-	void Select(int cursor);
-	void SelectInput();
-	void PauseInitialize();
-	void ClearInitialize();
-	void Create(char* title, char** text, int cnt);
 public:
-	GameMenu();
-	void Initialize();
-	void Update();
+	void Create(char* title, char** text, int cnt);
 	void Render();
 	void Release();
-	void PauseUpdate();
-	bool IsPause() { return  _stop; }
-	bool IsSceneChange() { return _sceneChange; }
-	void SetGoal(bool goal);
 	void Show();
+	void SetCoursor(int cursor) { _cursor = cursor; }
 };
 

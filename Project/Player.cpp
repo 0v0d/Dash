@@ -68,14 +68,14 @@ void Player::Debug(float wx)
 	CGraphicsUtilities::RenderRect(_jumpRect.Left - wx, _jumpRect.Top , _jumpRect.Right - wx, _jumpRect.Bottom, MOF_COLOR_RED);
 }
 
-void Player::Damaged(bool collison)
-{
-	_death = collison;
-}
-
-void Player::Goal(bool goal)
+void Player::SetGoal(bool goal)
 {
 	_goal = goal;
 }
 
+
+void Player::SetDead(bool dead)
+{
+	//_dead = dead;
+}
 

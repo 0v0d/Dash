@@ -29,9 +29,9 @@ public:
 	void Update();
 	void Render(float wx);
 	void Release();
-	void Damaged(bool collison);
+	void SetDead(bool dead);
 	void Debug(float wx);
-	void Goal(bool goal);
+	void SetGoal(bool goal);
 	void CollisionStage(float ox, float oy);
 	CRectangle GetCollisionRect() { return _collisionRect; }
 	CRectangle GetJumpRect() { return  _jumpRect; }

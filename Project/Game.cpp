@@ -2,11 +2,12 @@
 
 void Game::Initialize()
 {
-	_debug =false;
-	_gameMenu.Initialize();
+	_debug = false;
 	_stage.Initialize();
 	_deathCount.Initialize();
 	_time.Initialize();
+	_pause.Initialize();
+	_stageClear.Initialize();
 }
 
 void Game::Update()
@@ -15,14 +16,20 @@ void Game::Update()
 
 	SetCount();
 
-	GameMenuUpdate();
+
+
+	_pause.Update();
+
+	if (_pause.IsPause())
+	{
+		return;
+	}
 
 	PlayerDeathUpdate();
 
 	PlayerGoalUpdate();
 
-	if (_gameMenu.IsPause())
-		return;
+
 
 	_time.Update();
 
@@ -44,19 +51,25 @@ void Game::SetCount()
 
 void Game::GameMenuUpdate()
 {
-	_gameMenu.SetGoal(_stage.IsGoal());
-	if (!_stage.IsGoal())
-		_gameMenu.PauseUpdate();
+	_stageClear.SetGoal(_stage.IsGoal());
+
+	if (_stage.IsGoal() == false)
+	{
+		_pause.Update();
+	}
 
 	SceneChange();
-	_gameMenu.Update();
+	_stageClear.Update();
 }
 
 void Game::SceneChange()
 {
-	if (_gameMenu.IsSceneChange())
+	/*if (_pause.IsChangeScene()||_stageClear.IsChangeScene())
+	{
 		SceneManager::Instance().ChangeScene(SCENE_TYPE::STAGESELECT);
+	}*/
 }
+
 
 void Game::PlayerDeathUpdate()
 {
@@ -85,20 +98,31 @@ void  Game::Render()
 	_stage.Render();
 	CGraphicsUtilities::RenderString(_deathCountPos.x, _deathCountPos.y, MOF_COLOR_RED, "DeathCount : %d", _count);
 	if (_bestScore == _deathCount.GetIniScore())
+	{
 		CGraphicsUtilities::RenderString(_scorePos.x, _scorePos.y, " ");
+	}
 	else
+	{
 		CGraphicsUtilities::RenderString(_scorePos.x, _scorePos.y, MOF_COLOR_RED, "Best : %d", _bestScore);
-	
+	}
+
+
 	_time.Render();
 
-	if(_gameMenu.IsPause())
-		_gameMenu.Render();
+	if (_pause.IsPause())
+	{
+		_pause.Render();
+	}
 
-	else if(_stage.IsGoal())
-		_gameMenu.Render();
+	else if (_stage.IsGoal())
+	{
+		_stageClear.Render();
+	}
 
 	if (_debug)
+	{
 		_stage.Debug();
+	}
 
 	CGraphicsUtilities::RenderString(_configurationPos.x, _configurationPos.y, MOF_COLOR_RED,
 		"SPACE:JUMP  ESC:PAUSE 1:DEBUG");
@@ -106,7 +130,8 @@ void  Game::Render()
 
 void  Game::Release()
 {
-	_gameMenu.Release();
+	_stageClear.Release();
+	_pause.Release();
 	_stage.Release();
 }
 

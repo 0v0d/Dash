@@ -1,51 +1,29 @@
 #include "GameMenu.h"
 
-GameMenu::GameMenu() :
-_text(NULL),
-_count(0),
-_title(NULL)
-{}
 
-void GameMenu::Initialize()
-{
-	_cursor = 0;
-	_sceneChange = false;
-	_stop = false;
-	_goal = false;
-}
-
-void GameMenu::PauseInitialize()
-{
-	Create(_pause.GetTitle(), _pause.GetText(), _pause.GetTextCount());
-}
-
-void GameMenu::ClearInitialize()
-{
-	Create(_stageClear.GetTitle(), _stageClear.GetText(), _stageClear.GetTextCount());
-}
 
 void GameMenu::Create(char* title, char** text, int cnt)
 {
 	Release();
 	_count = cnt;
-	_title = (char*)malloc(strlen(title) + strIndex);
+	_title = new char[strlen(title) + strIndex];
 	strcpy(_title, title);
-	_text = (char**)malloc(sizeof(char*) * cnt);
+	_text = new char* [sizeof(char*) * cnt];
 	for (int i = 0; i < _count; i++)
 	{
-		_text[i] = (char*)malloc(strlen(text[i]) + strIndex);
+		_text[i] = new char[strlen(text[i]) + strIndex];
 		strcpy(_text[i], text[i]);
 	}
 
 	CRectangle trec;
 	CGraphicsUtilities::CalculateStringRect(0, 0, _title, trec);
-	_rect.Right = MOF_MAX(_rect.Right, trec.Right + _heightSpace * _adjust);
+	_rect.Right = max(_rect.Right, trec.Right + _heightSpace * _adjust);
 	_rect.Bottom += trec.Bottom + _space * _adjust;
 	_headerRect = _rect;
 	for (int i = 0; i < _count; i++)
 	{
 		CGraphicsUtilities::CalculateStringRect(0, 0, _text[i], trec);
-		_headerRect.Right = _rect.Right = MOF_MAX(_rect.Right, trec.Right + _heightSpace * _adjust);
+		_headerRect.Right = _rect.Right = max(_rect.Right, trec.Right + _heightSpace * _adjust);
 		_rect.Bottom += trec.Bottom + _space;
 	}
 	_rect.Bottom += _space;
@@ -57,7 +35,7 @@ void GameMenu::Render()
 	CGraphicsUtilities::RenderFillRect(_headerRect, MOF_ARGB(200, 64, 64, 64));
 	CRectangle trec;
 	float py = _rect.Top + _space;
-	CGraphicsUtilities::CalculateStringRect(0, 0, _title,trec);
+	CGraphicsUtilities::CalculateStringRect(0, 0, _title, trec);
 	CGraphicsUtilities::RenderString(_screenWidth - trec.GetWidth() * _half, py, MOF_COLOR_WHITE, _title);
 	py += trec.Bottom + _space;
 	for (int i = 0; i < _count; i++)
@@ -69,38 +47,21 @@ void GameMenu::Render()
 	}
 }
 
-void GameMenu::Update()
-{
-	if(_stop)
-	{
-		SelectInput();
-		PauseInitialize();
-		Show();
-	}
-	else if(_goal)
-	{
-		SelectInput();
-		ClearInitialize();
-		Show();
-	}
-}
-
-
 void GameMenu::Release()
 {
 	if (_title)
 	{
-		free(_title);
-		_title = NULL;
+		delete _title;
+		_title = nullptr;
 	}
 	if (_text)
 	{
 		for (int i = 0; i < _count; i++)
 		{
-			free(_text[i]);
+			delete _text[i];
 		}
-		free(_text);
-		_text = NULL;
+		delete _text;
+		_text = nullptr;
 		_count = 0;
 	}
 	_rect = CRectangle(0, 0, 0, 0);
@@ -121,50 +82,3 @@ void GameMenu::Show()
 	_headerRect.Right = _rect.Left + _headerRect.GetWidth();
 	_headerRect.Left = _rect.Left;
 }
-
-void GameMenu::PauseUpdate()
-{
-	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE))
-		_stop = !_stop;
-}
-
-void GameMenu::SelectInput()
-{
-	if (g_pInput->IsKeyPush(MOFKEY_W))
-		Select(-1);
-
-	if (g_pInput->IsKeyPush(MOFKEY_S))
-		Select(1);
-
-	if (g_pInput->IsKeyPush(MOFKEY_RETURN))
-	{
-		switch (_cursor)
-		{
-		case 0:
-			_sceneChange = true;
-			break;
-		case 1:
-			PostQuitMessage(0);
-			break;
-		}
-	}
-}
-
-void GameMenu::Select(int cursor)
-{
-	_cursor += cursor;
-
-	if (_cursor > _cursorMax)
-		_cursor = _cursorMax;
-
-	if (_cursor < _cursorMin)
-		_cursor = _cursorMin;
-}
-
-
-void GameMenu::SetGoal(bool goal)
-{
-	_goal = goal;
-}
-
-
