@@ -14,7 +14,7 @@ private:
 	const int _rectIncreaceY = 40;
 	const int _jumpRectAdjust = 5;
 	bool	_jump;
-	bool	_death;
+	bool	_dead;
 	bool	_goal;
 	Vector2 _pos;
 	CTexture _texture;
@@ -33,6 +33,7 @@ public:
 	void Debug(float wx);
 	void SetGoal(bool goal);
 	void CollisionStage(float ox, float oy);
+	bool IsDead();
 	CRectangle GetCollisionRect() { return _collisionRect; }
 	CRectangle GetJumpRect() { return  _jumpRect; }
 };

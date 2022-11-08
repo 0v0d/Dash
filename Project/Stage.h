@@ -44,7 +44,7 @@ public:
 	void Debug();
 	void Release();
 	bool Collision(CRectangle collisionRect, CRectangle playerJumpRect, float& ox, float& oy);
-	bool GetDead() { return _damage; }
-	bool IsGoal() { return _goal; }
-	float GetScrollX() { return _scrollX; }
+	bool IsDead();
+	bool IsGoal();
+	float GetScrollX();
 };

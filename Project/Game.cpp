@@ -16,8 +16,6 @@ void Game::Update()
 
 	SetCount();
 
-
-
 	_pause.Update();
 
 	if (_pause.IsPause())
@@ -29,8 +27,6 @@ void Game::Update()
 
 	PlayerGoalUpdate();
 
-
-
 	_time.Update();
 
 	StageUpdate();
@@ -39,7 +35,9 @@ void Game::Update()
 void Game::Debug()
 {
 	if (g_pInput->IsKeyPush(MOFKEY_1))
+	{
 		_debug = !_debug;
+	}
 }
 
 
@@ -73,7 +71,7 @@ void Game::SceneChange()
 
 void Game::PlayerDeathUpdate()
 {
-	if (_stage.GetDead())
+	if (_stage.IsDead())
 	{
 		_deathCount.count(1);
 		_stage.Initialize();
@@ -84,13 +82,18 @@ void Game::PlayerDeathUpdate()
 void Game::PlayerGoalUpdate()
 {
 	if (_stage.IsGoal())
+	{
 		_deathCount.UpdateBestScore();
+	}
 }
 
 void Game::StageUpdate()
 {
 	if (_time.IsStart())
+	{
 		_stage.Update();
+	}
+	
 }
 
 void  Game::Render()
@@ -105,7 +108,6 @@ void  Game::Render()
 	{
 		CGraphicsUtilities::RenderString(_scorePos.x, _scorePos.y, MOF_COLOR_RED, "Best : %d", _bestScore);
 	}
-
 
 	_time.Render();
 
