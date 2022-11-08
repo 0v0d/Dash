@@ -6,8 +6,8 @@ void Pause::Initialize()
 	_input.Initialize();
 	_pause = false;
 	_menu.Create(_title, _text, _textCount);
-
 }
+
 void Pause::Update()
 {
 	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE))
@@ -21,14 +21,12 @@ void Pause::Update()
 		_menu.SetCoursor(_input.GetCursor());
 		_menu.Show();
 	}
-
 }
 
 void Pause::Render()
 {
 	_menu.Render();
 	CGraphicsUtilities::RenderString(0, 300, "%d", _input.GetCursor());
-
 }
 
 void Pause::Release()

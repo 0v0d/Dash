@@ -7,7 +7,7 @@ private:
 	GameMenu _menu;
 	MenuInput _input;
 	char* _title;
-	static const int _textCount = 2;
+	const enum { _textCount = 2 };
 	char* _text[_textCount] = {
 	"StageSelect",
 	"Exit"

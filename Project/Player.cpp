@@ -5,7 +5,7 @@ void Player::Initialize()
 	_texture.Load("Player.png");
 	_pos = _iniPos;
 	_jump = false;
-	_death = false;
+	_dead = false;
 	_goal = false;
 	_textureWidth = _texture.GetWidth();
 	_textureHeight = _texture.GetHeight();
@@ -15,7 +15,9 @@ void Player::Initialize()
 void Player::Update()
 {
 	if (!_goal)
+	{
 		Move();
+	}
 
 	Jump();
 	RectUpdate();
@@ -24,7 +26,6 @@ void Player::Update()
 void Player::Move()
 {
 	_pos.x += _speed;
-
 }
 
 void Player::Jump()
@@ -76,6 +77,6 @@ void Player::SetGoal(bool goal)
 
 void Player::SetDead(bool dead)
 {
-	//_dead = dead;
+	_dead = dead;
 }
 
