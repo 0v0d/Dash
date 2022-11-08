@@ -34,12 +34,12 @@ void GameMenu::Render()
 	CRectangle trec;
 	float py = _rect.Top + _space;
 	CGraphicsUtilities::CalculateStringRect(0, 0, _title, trec);
-	CGraphicsUtilities::RenderString(_screenWidth - trec.GetWidth() * _half, py, MOF_COLOR_WHITE, _title);
+	CGraphicsUtilities::RenderString(_screenWidth - trec.GetWidth()/2, py, MOF_COLOR_WHITE, _title);
 	py += trec.Bottom + _space;
 	for (int i = 0; i < _count; i++)
 	{
 		CGraphicsUtilities::CalculateStringRect(0, 0, _text[i], trec);
-		CGraphicsUtilities::RenderString(_screenWidth - trec.GetWidth() * _half, py + _space,
+		CGraphicsUtilities::RenderString(_screenWidth - trec.GetWidth() /2, py + _space,
 			((_cursor == i) ? MOF_XRGB(255, 255, 255) : MOF_XRGB(128, 128, 128)), _text[i]);
 		py += trec.Bottom + _space;
 	}
@@ -67,13 +67,13 @@ void GameMenu::Release()
 
 void GameMenu::Show()
 {
-	_screenWidth = g_pGraphics->GetTargetWidth() * _half;
-	_screenHeight = g_pGraphics->GetTargetHeight() * _half;
+	_screenWidth = g_pGraphics->GetTargetWidth() / 2;
+	_screenHeight = g_pGraphics->GetTargetHeight() / 2;
 	_rectWidth = _rect.GetWidth();
 	_rectHeight = _rect.GetHeight();
-	_rect.Top = _screenHeight - _rectHeight * _half;
+	_rect.Top = _screenHeight - _rectHeight / 2;
 	_rect.Bottom = _rect.Top + _rectHeight;
-	_rect.Left = _screenWidth - _rectWidth * _half;
+	_rect.Left = _screenWidth - _rectWidth / 2;
 	_rect.Right = _rect.Left + _rectWidth;
 	_headerRect.Bottom = _rect.Top + _headerRect.GetHeight();
 	_headerRect.Top = _rect.Top;

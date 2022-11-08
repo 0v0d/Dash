@@ -17,7 +17,6 @@ public:
 	int GetBestScoreFromFile(char* fileName);
 	bool SetBestScoreToFile();
 	void SetDeathCount(int stageNo);
-	int StageSelectGetBestFromFile();
 	void SetTextFile(int stageNo);
-	int GetIniScore() { return _iniScore; }
+	int GetIniScore() const { return _iniScore; }
 };

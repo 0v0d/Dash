@@ -29,7 +29,6 @@ void StageSelect::Render()
 {
 	_backTexture.Render(_backTexturePos.x, _backTexturePos.y);
 	_listManager.Render();
-
 	CGraphicsUtilities::RenderString(_configurationPos.x, _configurationPos.y, "A:©  D:¨  SPACE:Œˆ’è");
 }
 

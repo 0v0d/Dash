@@ -1,4 +1,5 @@
 #include "StartTimeCount.h"
+
 void StartTimeCount::Initialize()
 {
 	_pos.x = CGraphicsUtilities::GetGraphics()->GetTargetWidth()/2;
@@ -28,4 +29,9 @@ void StartTimeCount::Render()
 		CGraphicsUtilities::RenderString(_pos.x, _pos.y, "%.0f", _countDownTime);
 	}
 		
+}
+
+inline bool StartTimeCount::IsStart()const
+{
+	return  _start;
 }

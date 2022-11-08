@@ -13,7 +13,7 @@ public:
 	void Initialize();
 	void Update();
 	void Render();
-	bool IsStart() const { return  _start; }
+	bool IsStart() const;
 
 };
 

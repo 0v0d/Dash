@@ -31,8 +31,14 @@ void MenuInput::SelectInput()
 		}
 	}
 }
+
 void MenuInput::Select(const int cursor)
 {
 	_cursor += cursor;
 	_cursor = _cursor < _cursorMin ? _cursor = _cursorMin : min(_cursor, _cursorMax);
+}
+
+int  MenuInput::GetCursor() const
+{
+	return _cursor;
 }

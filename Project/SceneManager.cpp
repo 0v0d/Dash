@@ -14,20 +14,24 @@ void SceneManager::Initialize()
 	sceneContainer->_titleScene->Initialize();
 	sceneContainer->_stageSelectScene->Initialize();
 }
+
 void SceneManager::Update()
 {
 	nowScene->Update();
 }
+
 void SceneManager::Render()
 {
 	nowScene->Render();
 }
+
 void SceneManager::Release()
 {
 	sceneContainer->_titleScene->Release();
 	sceneContainer->_gameScene->Release();
 	sceneContainer->_stageSelectScene->Release();
 }
+
 void SceneManager::ChangeScene(SCENE_TYPE type)
 {
 	switch (type)
@@ -44,6 +48,7 @@ void SceneManager::ChangeScene(SCENE_TYPE type)
 		break;
 	}
 }
+
 void SceneManager::SetStage(int stageNo)
 {
 	Game* game = dynamic_cast<Game*> (sceneContainer->_gameScene);

@@ -1,5 +1,4 @@
 #pragma once
-
 #include  "SceneContainer.h"
 #include "Game.h"
 #include "Title.h"
@@ -21,7 +20,6 @@ private:
 	IBaseScene* nowScene;
 	SceneManager();
 public:
-
 	static SceneManager& Instance()
 	{
 		if (instance == nullptr)
@@ -29,7 +27,7 @@ public:
 			instance = new SceneManager();
 		}
 		return *instance;
-	};
+	}
 	void Initialize();
 	void Update();
 	void Render();
