@@ -1,7 +1,5 @@
 #include "GameMenu.h"
 
-
-
 void GameMenu::Create(char* title, char** text, int cnt)
 {
 	Release();

@@ -11,7 +11,9 @@ void StartTimeCount::Update()
 {
 	Tick();
 	if(_countDownTime < 0)
+	{
 		_start = true;
+	}
 }
 
 void StartTimeCount::Tick()
@@ -21,6 +23,9 @@ void StartTimeCount::Tick()
 
 void StartTimeCount::Render()
 {
-	if (!_start) 
+	if (!IsStart())
+	{
 		CGraphicsUtilities::RenderString(_pos.x, _pos.y, "%.0f", _countDownTime);
+	}
+		
 }

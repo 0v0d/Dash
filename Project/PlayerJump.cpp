@@ -26,3 +26,8 @@ void PlayerJump::CollisionStage()
 		}
 	}
 }
+
+inline bool PlayerJump::Isjump() const
+{
+	return _jump;
+}

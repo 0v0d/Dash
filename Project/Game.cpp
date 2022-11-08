@@ -93,7 +93,6 @@ void Game::StageUpdate()
 	{
 		_stage.Update();
 	}
-	
 }
 
 void  Game::Render()

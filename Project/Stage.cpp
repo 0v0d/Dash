@@ -58,7 +58,7 @@ void Stage::Initialize()
 	_stageSizeX = _chipSize * _xSize;
 	_player.Initialize();
 	_scrollX = 0;
-	_damage = false;
+	_dead = false;
 	_goal = false;
 }
 
@@ -70,7 +70,6 @@ void Stage::Update()
 	if (Collision(_player.GetCollisionRect(), _player.GetJumpRect(), ox, oy))
 	{
 		_player.CollisionStage(ox, oy);
-		_player.SetDead(IsDead());
 	}
 	_player.SetGoal(IsGoal());
 
@@ -94,7 +93,6 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 
 	if (_leftChipSize < 0)
 	{
-
 		_leftChipSize = 0;
 	}
 	if (_topChipSize < 0)
@@ -109,7 +107,6 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 	{
 		_bottomChipSize = _ySize - 1;
 	}
-	
 
 	for (int y = _topChipSize; y <= _bottomChipSize; y++)
 	{
@@ -128,7 +125,7 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 			else if (_chipRect.CollisionRect(playerCollision))
 			{
 				_rect = true;
-				_damage = true;
+				_dead = true;
 			}
 			else if (_chipRect.CollisionRect(playerJumpRect))
 			{
@@ -138,7 +135,7 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 			}
 			if (_chipNo == _sankaku)
 			{
-				_damage = true;
+				_dead = true;
 			}
 		}
 	}
@@ -169,7 +166,8 @@ void Stage::Render(void) {
 
 	if (!IsDead())
 	{
-		_player.Render(GetScrollX());
+		_player.SetScoll(GetScrollX());
+		_player.Render();
 	}
 
 }
@@ -177,7 +175,7 @@ void Stage::Render(void) {
 void Stage::Debug()
 {
 	CGraphicsUtilities::RenderString(_debugPos.x, _debugPos.y, "ƒXƒNƒ[ƒ‹ X : %.0f", _scrollX);
-	_player.Debug(GetScrollX());
+	_player.Debug();
 }
 
 void Stage::Release()
@@ -193,7 +191,7 @@ void Stage::Release()
 
 bool Stage::IsDead()
 {
-	return _damage;
+	return _dead;
 }
 
 bool Stage::IsGoal()

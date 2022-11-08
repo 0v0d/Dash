@@ -7,7 +7,7 @@ private:
 	GameMenu _menu;
 	MenuInput _input;
 	char* _title;
-	const enum { _textCount = 2 };
+	enum { _textCount = 2 };
 	char* _text[_textCount] = {
 	"StageSelect",
 	"Exit"
@@ -18,6 +18,5 @@ public:
 	void Update();
 	void Render();
 	void Release();
-	bool IsPause() { return _pause; }
-	void ChangeScene();
+	bool IsPause() const{ return _pause; }
 };

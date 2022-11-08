@@ -7,11 +7,10 @@ private:
 	int _cursor;
 	const int _cursorMin = 0;
 	const int _cursorMax = 1;
-
 public:
 	void SelectInput();
 	void Initialize();
 	void Select(int cursor);
-	int GetCursor() { return _cursor; }
+	int GetCursor()const { return _cursor; }
 };
 

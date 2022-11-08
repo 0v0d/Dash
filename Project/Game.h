@@ -6,6 +6,7 @@
 #include "StartTimeCount.h"
 #include  "Pause.h"
 #include  "StageClear.h"
+
 class Game : public IBaseScene
 {
 private:

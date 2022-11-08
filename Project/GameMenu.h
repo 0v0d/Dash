@@ -23,6 +23,6 @@ public:
 	void Render();
 	void Release();
 	void Show();
-	void SetCoursor(int cursor) { _cursor = cursor; }
+	void SetCoursor(const int cursor) { _cursor = cursor; }
 };
 

@@ -15,7 +15,7 @@ public:
 	void Initialize();
 	void Update();
 	void Render();
-	void SetGoal(bool goal) { _goal = goal; }
-	bool IsGoal() { return _goal; }
+	void SetGoal(const bool goal);
+	bool IsGoal()const;
 	void Release();
 };

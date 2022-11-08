@@ -8,12 +8,12 @@ private:
 	bool _start = false;
 	Vector2 _pos;
 	void Tick();
-	float GetNowTime() { return _countDownTime; }
+	float GetNowTime() const { return _countDownTime; }
 public:
 	void Initialize();
 	void Update();
 	void Render();
-	bool IsStart() { return  _start; }
+	bool IsStart() const { return  _start; }
 
 };
 
