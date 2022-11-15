@@ -10,6 +10,6 @@ private:
 public:
 	void SelectInput();
 	void Initialize();
-	void Select(int cursor);
+	void Select(const int cursor);
 	int GetCursor() const;
 };
