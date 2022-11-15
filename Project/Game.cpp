@@ -16,7 +16,7 @@ void Game::Update()
 
 	SetCount();
 
-	GameMenuUpdate();
+	_pause.Update();
 
 	if (_pause.IsPause())
 	{
