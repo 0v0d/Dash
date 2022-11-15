@@ -45,15 +45,15 @@ void Player::RectUpdate()
 		_pos.y + _textureHeight);
 }
 
-void Player::Render(float wx)
+void Player::Render()
 {
-	_texture.Render(_pos.x - wx, _pos.y);
+	_texture.Render(_pos.x - _scroll, _pos.y);
 }
 
-void Player::CollisionStage(float ox, float oy)
+void Player::CollisionStage(float x, float y)
 {
-	_pos.x += ox;
-	_pos.y += oy;
+	_pos.x += x;
+	_pos.y += y;
 	_playerJump.CollisionStage();
 }
 
@@ -62,21 +62,22 @@ void Player::Release()
 	_texture.Release();
 }
 
-void Player::Debug(float wx)
+void Player::Debug()
 {
 	CGraphicsUtilities::RenderString(_debugPos.x, _debugPos.y, "プレイヤー位置 X : %.0f , Y : %.0f ", _pos.x, _pos.y);
-	CGraphicsUtilities::RenderRect(_collisionRect.Left - wx, _collisionRect.Top, _collisionRect.Right - wx, _collisionRect.Bottom, MOF_COLOR_HYELLOW);
-	CGraphicsUtilities::RenderRect(_jumpRect.Left - wx, _jumpRect.Top , _jumpRect.Right - wx, _jumpRect.Bottom, MOF_COLOR_RED);
+	CGraphicsUtilities::RenderRect(_collisionRect.Left - _scroll, _collisionRect.Top, _collisionRect.Right - _scroll, _collisionRect.Bottom, MOF_COLOR_HYELLOW);
+	CGraphicsUtilities::RenderRect(_jumpRect.Left - _scroll, _jumpRect.Top , _jumpRect.Right - _scroll, _jumpRect.Bottom, MOF_COLOR_RED);
 }
 
-void Player::SetGoal(bool goal)
+void Player::SetGoal(const bool goal)
 {
 	_goal = goal;
 }
 
 
-void Player::SetDead(bool dead)
+void Player::SetDead(const bool dead)
 {
 	_dead = dead;
 }
+
 

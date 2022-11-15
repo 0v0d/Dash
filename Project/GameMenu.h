@@ -17,12 +17,11 @@ private:
 	float _screenHeight;
 	float _rectWidth;
 	float _rectHeight;
-	const float _half = 0.5;
 public:
+	void Show();
 	void Create(char* title, char** text, int cnt);
 	void Render();
 	void Release();
-	void Show();
-	void SetCoursor(int cursor) { _cursor = cursor; }
+	void SetCoursor(const int cursor) { _cursor = cursor; }
 };
 

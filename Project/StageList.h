@@ -1,9 +1,9 @@
 #pragma once
 #include "Mof.h"
+
 class StageList
 {
 private:
-
 	Vector2 _texturePos;
 	int _cursor;
 	const int _stageValue = 2;
@@ -15,5 +15,5 @@ public:
 	void Initialize();
 	void Render();
 	void Release();
-	void SetCursor(int cursor) { _cursor = cursor; }
+	void SetCursor(const int cursor) { _cursor = cursor; }
 };

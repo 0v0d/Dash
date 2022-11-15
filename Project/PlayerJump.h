@@ -10,7 +10,8 @@ class PlayerJump
 public:
 	void Initialize();
 	void Jump();
-	bool Isjump() { return _jump; }
-	float JumpValue() { return _moveY; }
+	float JumpValue() const { return _moveY; }
 	void CollisionStage();
+private:
+	bool Isjump() const;
 };

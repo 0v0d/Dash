@@ -6,6 +6,7 @@
 #include "StartTimeCount.h"
 #include  "Pause.h"
 #include  "StageClear.h"
+
 class Game : public IBaseScene
 {
 private:
@@ -20,6 +21,13 @@ private:
 	int _bestScore;
 	int _stageNo;
 	int _count;
+public:
+	void Initialize();
+	void Update();
+	void Render();
+	void Release();
+	void SetStage(int stageNo);
+private:
 	void SceneChange();
 	void SetCount();
 	void GameMenuUpdate();
@@ -27,12 +35,5 @@ private:
 	void PlayerGoalUpdate();
 	void StageUpdate();
 	void Debug();
-public:
-	void Initialize();
-	void Update();
-	void Render();
-	void Release();
-	void SetStage(int stageNo);
-
 };
 

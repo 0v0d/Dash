@@ -4,7 +4,7 @@
 class Stage{
 private:
 	Player _player;
-	bool _damage;
+	bool _dead;
 	bool _goal;
 	char* _chipData = nullptr;
 	CTexture _chipTexture;
@@ -12,8 +12,7 @@ private:
 	float _chipSize;
 	float _playerScrollPos = 850;
 	float _scrollX;
-	int	_xSize;
-	int _ySize;
+	int	_xSize, _ySize;
 	const int _goalchiptop = 9;
 	const int _goalchipbottom = 10;
 	const int _goalchipmiddle = 24;

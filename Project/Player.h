@@ -1,7 +1,7 @@
-
 #pragma once
 #include	"Mof.h"
 #include "PlayerJump.h"
+
 class Player
 {
 private:
@@ -13,6 +13,7 @@ private:
 	const Vector2 _rectDecreace = Vector2(5, 10);
 	const int _rectIncreaceY = 40;
 	const int _jumpRectAdjust = 5;
+	float _scroll;
 	bool	_jump;
 	bool	_dead;
 	bool	_goal;
@@ -21,19 +22,21 @@ private:
 	CRectangle _collisionRect;
 	CRectangle _jumpRect;
 	const Vector2 _debugPos = Vector2(10, 70);
-	void Move();
-	void Jump();
-	void RectUpdate();
 public:
 	void Initialize();
 	void Update();
-	void Render(float wx);
+	void Render();
 	void Release();
-	void SetDead(bool dead);
-	void Debug(float wx);
-	void SetGoal(bool goal);
-	void CollisionStage(float ox, float oy);
-	bool IsDead();
-	CRectangle GetCollisionRect() { return _collisionRect; }
-	CRectangle GetJumpRect() { return  _jumpRect; }
+	void SetDead(const bool dead);
+	void Debug();
+	void SetGoal(const bool goal);
+	void CollisionStage(float x, float y);
+	bool IsDead() const;
+	CRectangle GetCollisionRect() const { return _collisionRect; }
+	CRectangle GetJumpRect() const { return  _jumpRect; }
+	void SetScoll(const float scroll) { _scroll = scroll; }
+private:
+	void Move();
+	void Jump();
+	void RectUpdate();
 };

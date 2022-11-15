@@ -9,7 +9,9 @@ void Title::Initialize()
 void Title::Update()
 {
 	if (g_pInput->IsKeyPush(MOFKEY_SPACE))
+	{
 		SceneManager::Instance().ChangeScene(SCENE_TYPE::STAGESELECT);
+	}
 }
 
 void Title::Render()

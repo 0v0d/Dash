@@ -8,7 +8,7 @@ void PlayerJump::Initialize()
 void PlayerJump::Jump()
 {
 	_moveY += _gravity;
-	if (g_pInput->IsKeyPush(MOFKEY_SPACE) && _jump == false)
+	if (g_pInput->IsKeyPush(MOFKEY_SPACE) && Isjump() == false)
 	{
 		_jump = true;
 		_moveY += _jumpValue;
@@ -25,4 +25,9 @@ void PlayerJump::CollisionStage()
 			_jump = false;
 		}
 	}
+}
+
+inline bool PlayerJump::Isjump() const
+{
+	return _jump;
 }

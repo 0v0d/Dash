@@ -1,7 +1,6 @@
 #include "StageList.h"
 void StageList::Load ()
 {
-	
 	_texture[0].Load("1.png");
 	_texture[1].Load("2.png");
 }
@@ -20,5 +19,7 @@ void StageList::Render()
 void StageList::Release()
 {
 	for(int i = 0; i< _stageValue; i++)
+	{
 		_texture[i].Release();
+	}
 }
