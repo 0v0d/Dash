@@ -30,7 +30,6 @@ void Pause::Render()
 		_menu.Render();
 		CGraphicsUtilities::RenderString(0, 300, "%d", _input.GetCursor());
 	}
-	
 }
 
 void Pause::Release()
