@@ -11,8 +11,6 @@ void Stage::SetStage(int stageNo)
 	case 2:
 		stageName = "Stage2.txt";
 		break;
-	default:
-		stageName = "Stage1.txt";
 	}
 	Load(stageName);
 }
