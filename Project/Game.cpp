@@ -16,7 +16,7 @@ void Game::Update()
 
 	SetCount();
 
-	_pause.Update();
+	GameMenuUpdate();
 
 	if (_pause.IsPause())
 	{
@@ -28,7 +28,7 @@ void Game::Update()
 	PlayerGoalUpdate();
 
 	_time.Update();
-	
+
 	StageUpdate();
 }
 
@@ -39,6 +39,7 @@ void Game::Debug()
 		_debug = !_debug;
 	}
 }
+
 
 void Game::SetCount()
 {
@@ -54,6 +55,7 @@ void Game::GameMenuUpdate()
 	{
 		_pause.Update();
 	}
+
 	SceneChange();
 	_stageClear.Update();
 }
@@ -65,6 +67,7 @@ void Game::SceneChange()
 		SceneManager::Instance().ChangeScene(SCENE_TYPE::STAGESELECT);
 	}*/
 }
+
 
 void Game::PlayerDeathUpdate()
 {
@@ -107,9 +110,15 @@ void  Game::Render()
 
 	_time.Render();
 
-	_pause.Render();
+	if (_pause.IsPause())
+	{
+		_pause.Render();
+	}
 
-	_stageClear.Render();
+	else if (_stage.IsGoal())
+	{
+		_stageClear.Render();
+	}
 
 	if (_debug)
 	{
