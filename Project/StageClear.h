@@ -1,15 +1,17 @@
 #pragma once
 #include "GameMenu.h"
+#include "MenuInput.h"
 
 class StageClear
 {
 private:
 	GameMenu _menu;
+	MenuInput _input;
 	char* _title;
-	static const int _textCount = 2;
+	enum { _textCount = 2 };
 	char* _text[_textCount] = {
-		"StageSelect",
-		"Exit"
+	"StageSelect",
+	"Exit"
 	};
 	bool _goal;
 public:
@@ -17,7 +19,6 @@ public:
 	void Update();
 	void Render();
 	void Release();
-	void SetGoal(const bool goal);
-private:
+	void SetGoal(bool goal);
 	bool IsGoal()const;
 };
