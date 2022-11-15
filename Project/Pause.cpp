@@ -2,7 +2,6 @@
 
 void Pause::Initialize()
 {
-	
 	_title = "Pause";
 	_input.Initialize();
 	_pause = false;

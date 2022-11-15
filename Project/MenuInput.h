@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Mof.h"
+
 class MenuInput
 {
 private:
