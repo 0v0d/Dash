@@ -18,10 +18,10 @@ private:
 	float _rectWidth;
 	float _rectHeight;
 public:
+	void Show();
 	void Create(char* title, char** text, int cnt);
 	void Render();
 	void Release();
-	void Show();
 	void SetCoursor(const int cursor) { _cursor = cursor; }
 };
 

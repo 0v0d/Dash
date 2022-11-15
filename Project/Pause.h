@@ -1,6 +1,7 @@
 #pragma once
 #include "GameMenu.h"
 #include "MenuInput.h"
+
 class Pause
 {
 private:
@@ -18,5 +19,6 @@ public:
 	void Update();
 	void Render();
 	void Release();
+
 	bool IsPause() const{ return _pause; }
 };

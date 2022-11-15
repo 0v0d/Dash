@@ -1,5 +1,6 @@
 #pragma once
 #include "GameMenu.h"
+
 class StageClear
 {
 private:
@@ -15,7 +16,8 @@ public:
 	void Initialize();
 	void Update();
 	void Render();
-	void SetGoal(const bool goal);
-	bool IsGoal()const;
 	void Release();
+	void SetGoal(const bool goal);
+private:
+	bool IsGoal()const;
 };

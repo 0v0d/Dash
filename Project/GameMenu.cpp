@@ -1,5 +1,21 @@
 #include "GameMenu.h"
 
+void GameMenu::Show()
+{
+	_screenWidth = g_pGraphics->GetTargetWidth() / 2;
+	_screenHeight = g_pGraphics->GetTargetHeight() / 2;
+	_rectWidth = _rect.GetWidth();
+	_rectHeight = _rect.GetHeight();
+	_rect.Top = _screenHeight - _rectHeight / 2;
+	_rect.Bottom = _rect.Top + _rectHeight;
+	_rect.Left = _screenWidth - _rectWidth / 2;
+	_rect.Right = _rect.Left + _rectWidth;
+	_headerRect.Bottom = _rect.Top + _headerRect.GetHeight();
+	_headerRect.Top = _rect.Top;
+	_headerRect.Right = _rect.Left + _headerRect.GetWidth();
+	_headerRect.Left = _rect.Left;
+}
+
 void GameMenu::Create(char* title, char** text, int cnt)
 {
 	Release();
@@ -47,12 +63,12 @@ void GameMenu::Render()
 
 void GameMenu::Release()
 {
-	if (_title)
+	if (_title != nullptr)
 	{
 		delete _title;
 		_title = nullptr;
 	}
-	if (_text)
+	if (_text != nullptr)
 	{
 		for (int i = 0; i < _count; i++)
 		{
@@ -63,20 +79,4 @@ void GameMenu::Release()
 		_count = 0;
 	}
 	_rect = CRectangle(0, 0, 0, 0);
-}
-
-void GameMenu::Show()
-{
-	_screenWidth = g_pGraphics->GetTargetWidth() / 2;
-	_screenHeight = g_pGraphics->GetTargetHeight() / 2;
-	_rectWidth = _rect.GetWidth();
-	_rectHeight = _rect.GetHeight();
-	_rect.Top = _screenHeight - _rectHeight / 2;
-	_rect.Bottom = _rect.Top + _rectHeight;
-	_rect.Left = _screenWidth - _rectWidth / 2;
-	_rect.Right = _rect.Left + _rectWidth;
-	_headerRect.Bottom = _rect.Top + _headerRect.GetHeight();
-	_headerRect.Top = _rect.Top;
-	_headerRect.Right = _rect.Left + _headerRect.GetWidth();
-	_headerRect.Left = _rect.Left;
 }
