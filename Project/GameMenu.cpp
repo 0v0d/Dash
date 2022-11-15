@@ -63,12 +63,12 @@ void GameMenu::Render()
 
 void GameMenu::Release()
 {
-	if (_title != nullptr)
+	if (_title)
 	{
 		delete _title;
 		_title = nullptr;
 	}
-	if (_text != nullptr)
+	if (_text)
 	{
 		for (int i = 0; i < _count; i++)
 		{
