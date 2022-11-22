@@ -4,7 +4,7 @@ class StartTimeCount
 {
 private:
 	float _countDownTime;
-	const float _countTime = 3;
+	const float _countTime = 3.0f;
 	bool _start = false;
 	Vector2 _pos;
 	void Tick();

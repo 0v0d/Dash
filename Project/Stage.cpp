@@ -63,7 +63,7 @@ void Stage::Initialize()
 void Stage::Update()
 {
 	_player.Update();
-
+	_player.SetDead(IsDead());
 	float ox = 0, oy = 0;
 	if (Collision(_player.GetCollisionRect(), _player.GetJumpRect(), ox, oy))
 	{
@@ -162,7 +162,7 @@ void Stage::Render(void) {
 		}
 	}
 
-	if (!IsDead())
+	if (!_player.IsDead())
 	{
 		_player.SetScoll(GetScrollX());
 		_player.Render();

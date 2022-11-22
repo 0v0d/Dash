@@ -10,7 +10,7 @@ private:
 	CTexture _chipTexture;
 	CTexture _backTexture;
 	float _chipSize;
-	float _playerScrollPos = 850;
+	float _playerScrollPos = 850.0f;
 	float _scrollX;
 	int	_xSize, _ySize;
 	const int _goalchiptop = 9;

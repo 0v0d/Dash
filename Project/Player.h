@@ -31,7 +31,7 @@ public:
 	void Debug();
 	void SetGoal(const bool goal);
 	void CollisionStage(float x, float y);
-	bool IsDead() const;
+	bool IsDead() const { return _dead; }
 	CRectangle GetCollisionRect() const { return _collisionRect; }
 	CRectangle GetJumpRect() const { return  _jumpRect; }
 	void SetScoll(const float scroll) { _scroll = scroll; }
