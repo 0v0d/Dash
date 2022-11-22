@@ -1,8 +1,7 @@
 #include "Player.h"
-
 void Player::Initialize()
 {
-	_texture.Load("Player.png");
+	_texture.Load(_playerTexture.c_str());
 	_pos = _iniPos;
 	_jump = false;
 	_dead = false;

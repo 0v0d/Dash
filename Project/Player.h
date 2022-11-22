@@ -1,13 +1,14 @@
 #pragma once
 #include	"Mof.h"
 #include "PlayerJump.h"
-
+#include <string>
 class Player
 {
 private:
 	PlayerJump _playerJump;
 	const float _speed = 7;
 	const Vector2 _iniPos = Vector2(50, 526);
+	const std::string _playerTexture = "Player.png";
 	float _textureWidth;
 	float _textureHeight;
 	const Vector2 _rectDecreace = Vector2(5, 10);
