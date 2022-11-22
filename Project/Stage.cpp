@@ -2,7 +2,7 @@
 
 void Stage::SetStage(int stageNo)
 {
-	char* stageName;
+	char* stageName ="";
 	switch (stageNo)
 	{
 	case 1:

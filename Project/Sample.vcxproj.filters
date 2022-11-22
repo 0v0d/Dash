@@ -90,6 +90,9 @@
     <ClCompile Include="MenuInput.cpp">
       <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDeadAnimation.cpp">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h">
@@ -144,6 +147,9 @@
       <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MenuInput.h">
+      <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDeadAnimation.h">
       <Filter>ソース ファイル\SceneManager\Game\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

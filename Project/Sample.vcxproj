@@ -99,6 +99,7 @@
     <ClCompile Include="MenuInput.cpp" />
     <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerDeadAnimation.cpp" />
     <ClCompile Include="PlayerJump.cpp" />
     <ClCompile Include="SceneContainer.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="MenuInput.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerDeadAnimation.h" />
     <ClInclude Include="PlayerJump.h" />
     <ClInclude Include="SceneContainer.h" />
     <ClInclude Include="SceneManager.h" />

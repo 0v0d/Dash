@@ -6,7 +6,7 @@ class Player
 {
 private:
 	PlayerJump _playerJump;
-	const float _speed = 7;
+	const float _speed = 7.0f;
 	const Vector2 _iniPos = Vector2(50, 526);
 	float _textureWidth;
 	float _textureHeight;

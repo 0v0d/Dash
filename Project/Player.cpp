@@ -10,6 +10,7 @@ void Player::Initialize()
 	_textureWidth = _texture.GetWidth();
 	_textureHeight = _texture.GetHeight();
 	RectUpdate();
+	_deadAnim.Initialize();
 }
 
 void Player::Update()
@@ -21,6 +22,7 @@ void Player::Update()
 
 	Jump();
 	RectUpdate();
+	_deadAnim.Update();
 }
 
 void Player::Move()
@@ -47,6 +49,8 @@ void Player::RectUpdate()
 
 void Player::Render()
 {
+	_deadAnim.SetPlayerPos(_pos);
+	_deadAnim.SetWorldPos(_scroll);
 	_texture.Render(_pos.x - _scroll, _pos.y);
 }
 
