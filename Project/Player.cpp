@@ -14,12 +14,11 @@ void Player::Initialize()
 
 void Player::Update()
 {
+	Jump();
 	if (!_goal)
 	{
 		Move();
 	}
-
-	Jump();
 	RectUpdate();
 }
 

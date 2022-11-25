@@ -62,20 +62,19 @@ void Stage::Initialize()
 
 void Stage::Update()
 {
-	_player.Update();
-
 	float ox = 0, oy = 0;
 	if (Collision(_player.GetCollisionRect(), _player.GetJumpRect(), ox, oy))
 	{
 		_player.CollisionStage(ox, oy);
 	}
+	_player.Update();
 	_player.SetGoal(IsGoal());
 
 }
 
 bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, float& ox, float& oy)
 {
-
+	CRectangle playerJumpRect_ = playerJumpRect;
 	if (playerCollision.Right - _scrollX > _screenWidth - _playerScrollPos)
 	{
 		_scrollX += (playerCollision.Right - _scrollX) - (_screenWidth - _playerScrollPos);
@@ -84,10 +83,10 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 	}
 
 	_rect = false;
-	_leftChipSize = playerJumpRect.Left / _chipSize;
-	_rightChipSize = playerJumpRect.Right / _chipSize;
-	_topChipSize = playerJumpRect.Top / _chipSize;
-	_bottomChipSize = playerJumpRect.Bottom / _chipSize;
+	_leftChipSize = playerJumpRect_.Left / _chipSize;
+	_rightChipSize = playerJumpRect_.Right / _chipSize;
+	_topChipSize = playerJumpRect_.Top / _chipSize;
+	_bottomChipSize = playerJumpRect_.Bottom / _chipSize;
 
 	if (_leftChipSize < 0)
 	{
@@ -125,11 +124,11 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 				_rect = true;
 				_dead = true;
 			}
-			else if (_chipRect.CollisionRect(playerJumpRect))
+			else if (_chipRect.CollisionRect(playerJumpRect_))
 			{
 				_rect = true;
-				oy += _chipRect.Top - playerJumpRect.Bottom;
-				playerJumpRect.Bottom += _chipRect.Top - playerJumpRect.Bottom;
+				oy += _chipRect.Top - playerJumpRect_.Bottom;
+				playerJumpRect_.Bottom += _chipRect.Top - playerJumpRect_.Bottom;
 			}
 			if (_chipNo == _sankaku)
 			{
