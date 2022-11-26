@@ -28,7 +28,6 @@ public:
 	void Release();
 	void SetStage(int stageNo);
 private:
-	void SceneChange();
 	void SetCount();
 	void GameMenuUpdate();
 	void PlayerDeathUpdate();
