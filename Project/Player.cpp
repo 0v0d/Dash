@@ -52,6 +52,7 @@ void Player::Render()
 void Player::CollisionStage(float x, float y)
 {
 	_pos.x += x;
+	
 	_pos.y += y;
 	_playerJump.CollisionStage();
 }
