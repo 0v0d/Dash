@@ -8,9 +8,9 @@ private:
 	CTexture _backTexture;
 	CRectangle _backSize;
 public:
-	void Initialize();
-	void Update();
-	void Render();
-	void Release();
+	void Initialize() override;
+	void Update() override;
+	void Render() override;
+	void Release() override;
 };
 
