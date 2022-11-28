@@ -12,6 +12,7 @@ private:
 	float _chipSize;
 	float _playerScrollPos = 850;
 	float _scrollX;
+	float _scrollY;
 	int	_xSize, _ySize;
 	const int _goalchiptop = 9;
 	const int _goalchipbottom = 10;

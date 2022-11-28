@@ -56,38 +56,38 @@ void Stage::Initialize()
 	_stageSizeX = _chipSize * _xSize;
 	_player.Initialize();
 	_scrollX = 0;
+	_scrollY = 0;
 	_dead = false;
 	_goal = false;
 }
 
 void Stage::Update()
 {
-	_player.Update();
-
 	float ox = 0, oy = 0;
 	if (Collision(_player.GetCollisionRect(), _player.GetJumpRect(), ox, oy))
 	{
 		_player.CollisionStage(ox, oy);
 	}
+	_player.Update();
 	_player.SetGoal(IsGoal());
 
 }
 
 bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, float& ox, float& oy)
 {
-
-	if (playerCollision.Right - _scrollX > _screenWidth - _playerScrollPos)
+	CRectangle playerJumpRect_ = playerJumpRect;
+	if (playerJumpRect_.Right - _scrollX > _screenWidth - _playerScrollPos)
 	{
-		_scrollX += (playerCollision.Right - _scrollX) - (_screenWidth - _playerScrollPos);
+		_scrollX += (playerJumpRect_.Right - _scrollX) - (_screenWidth - _playerScrollPos);
 		if (_scrollX >= _stageSizeX - _screenWidth)
 			_scrollX = _stageSizeX - _screenWidth;
 	}
 
 	_rect = false;
-	_leftChipSize = playerJumpRect.Left / _chipSize;
-	_rightChipSize = playerJumpRect.Right / _chipSize;
-	_topChipSize = playerJumpRect.Top / _chipSize;
-	_bottomChipSize = playerJumpRect.Bottom / _chipSize;
+	_leftChipSize = playerJumpRect_.Left / _chipSize;
+	_rightChipSize = playerJumpRect_.Right / _chipSize;
+	_topChipSize = playerJumpRect_.Top / _chipSize;
+	_bottomChipSize = playerJumpRect_.Bottom / _chipSize;
 
 	if (_leftChipSize < 0)
 	{
@@ -120,21 +120,23 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 			{
 				_goal = true;
 			}
+			if (_chipRect.CollisionRect(playerJumpRect_))
+			{
+				_rect = true;
+				oy += _chipRect.Top - playerJumpRect_.Bottom;
+				playerJumpRect_.Top += _chipRect.Top - playerJumpRect_.Bottom;
+				playerJumpRect_.Bottom += _chipRect.Top - playerJumpRect_.Bottom;
+			}
 			else if (_chipRect.CollisionRect(playerCollision))
 			{
 				_rect = true;
 				_dead = true;
 			}
-			else if (_chipRect.CollisionRect(playerJumpRect))
-			{
-				_rect = true;
-				oy += _chipRect.Top - playerJumpRect.Bottom;
-				playerJumpRect.Bottom += _chipRect.Top - playerJumpRect.Bottom;
-			}
 			if (_chipNo == _sankaku)
 			{
 				_dead = true;
 			}
+
 		}
 	}
 	return _rect;
@@ -142,7 +144,7 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 
 void Stage::Render(void) {
 
-	for (float y = ((int)-0 % _backTextureHeight) - _backTextureHeight; y < _screenHeight; y += _backTextureHeight)
+	for (float y = ((int)-_scrollY % _backTextureHeight) - _backTextureHeight; y < _screenHeight; y += _backTextureHeight)
 	{
 		for (float x = ((int)-_scrollX % _backTextureWidth) - _backTextureWidth; x < _screenWidth; x += _backTextureWidth)
 		{
@@ -158,7 +160,7 @@ void Stage::Render(void) {
 			char _chipNo = _chipData[y * _xSize + x] - 1;
 			if (_chipNo < 0)continue;
 			CRectangle cr(_chipSize * (_chipNo % _chipTextureSizeX), _chipSize * (_chipNo / _chipTextureSizeX), _chipSize * (_chipNo % _chipTextureSizeX + 1), _chipSize * (_chipNo / _chipTextureSizeX + 1));
-			_chipTexture.Render(-_scrollX + x * _chipSize, -0 + y * _chipSize, cr);
+			_chipTexture.Render(-_scrollX + x * _chipSize, -_scrollY + y * _chipSize, cr);
 		}
 	}
 
