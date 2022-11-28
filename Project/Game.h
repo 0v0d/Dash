@@ -22,13 +22,12 @@ private:
 	int _stageNo;
 	int _count;
 public:
-	void Initialize();
-	void Update();
-	void Render();
-	void Release();
+	void Initialize() override;
+	void Update() override;
+	void Render() override;
+	void Release() override;
 	void SetStage(int stageNo);
 private:
-	void SceneChange();
 	void SetCount();
 	void GameMenuUpdate();
 	void PlayerDeathUpdate();

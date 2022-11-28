@@ -10,8 +10,8 @@ private:
 	Vector2 _backTexturePos = Vector2(0, 0);
 	const Vector2 _configurationPos = Vector2(600,0);
 public:
-	void Initialize();
-	void Update();
-	void Render();
-	void Release();
+	void Initialize()  override;
+	void Update() override;
+	void Render() override;
+	void Release() override;
 };

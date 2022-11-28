@@ -3,6 +3,7 @@
 #include "DeathCount.h"
 #include "StageList.h"
 
+#include <array>
 class ListManager
 {
 private:
@@ -11,10 +12,10 @@ private:
 	int _cursor;
 	const int _stageNoMin = 0;
 	const int _stageNoMax = 1;
-	const int _stageValue = 2;
+	static const int _stageValue = 2;
 	const Vector2 _scorePos = Vector2(0, 30);
 	const Vector2 _debugPos = Vector2(500, 0);
-	int _bestScore[2];
+	std::array<int,_stageValue>_bestScore;
 	int _iniScore;
 	bool _debug;
 	const int _cursorMoveVelue = 1;

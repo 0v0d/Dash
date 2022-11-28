@@ -1,5 +1,6 @@
 #include "ListManager.h"
 
+
 void ListManager::Initialize()
 {
 	_stageList = new StageList[_stageValue];

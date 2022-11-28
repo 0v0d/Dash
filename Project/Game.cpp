@@ -55,17 +55,7 @@ void Game::GameMenuUpdate()
 	{
 		_pause.Update();
 	}
-
-	SceneChange();
 	_stageClear.Update();
-}
-
-void Game::SceneChange()
-{
-	/*if (_pause.IsChangeScene()||_stageClear.IsChangeScene())
-	{
-		SceneManager::Instance().ChangeScene(SCENE_TYPE::STAGESELECT);
-	}*/
 }
 
 
