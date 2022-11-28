@@ -73,9 +73,8 @@ void Stage::Update()
 
 }
 
-bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, float& ox, float& oy)
+bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect_, float& ox, float& oy)
 {
-	CRectangle playerJumpRect_ = playerJumpRect;
 	if (playerJumpRect_.Right - _scrollX > _screenWidth - _playerScrollPos)
 	{
 		_scrollX += (playerJumpRect_.Right - _scrollX) - (_screenWidth - _playerScrollPos);
@@ -84,10 +83,10 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 	}
 
 	_rect = false;
-	_leftChipSize = playerJumpRect_.Left / _chipSize;
+	_leftChipSize = playerCollision.Left / _chipSize;
 	_rightChipSize = playerJumpRect_.Right / _chipSize;
-	_topChipSize = playerJumpRect_.Top / _chipSize;
-	_bottomChipSize = playerJumpRect_.Bottom / _chipSize;
+	_topChipSize = playerCollision.Top / _chipSize;
+	_bottomChipSize = playerJumpRect_.Bottom/ _chipSize;
 
 	if (_leftChipSize < 0)
 	{
@@ -103,7 +102,7 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 	}
 	if (_bottomChipSize >= _ySize)
 	{
-		_bottomChipSize = _ySize - 1;
+		_bottomChipSize = _ySize - 2;
 	}
 
 	for (int y = _topChipSize; y <= _bottomChipSize; y++)
@@ -127,7 +126,7 @@ bool Stage::Collision(CRectangle playerCollision, CRectangle playerJumpRect, flo
 				playerJumpRect_.Top += _chipRect.Top - playerJumpRect_.Bottom;
 				playerJumpRect_.Bottom += _chipRect.Top - playerJumpRect_.Bottom;
 			}
-			else if (_chipRect.CollisionRect(playerCollision))
+			if (_chipRect.CollisionRect(playerCollision))
 			{
 				_rect = true;
 				_dead = true;
