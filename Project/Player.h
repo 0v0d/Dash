@@ -1,11 +1,12 @@
 #pragma once
 #include	"Mof.h"
 #include "PlayerJump.h"
-
+#include  "PlayerDeadAnimation.h"
 class Player
 {
 private:
 	PlayerJump _playerJump;
+	PlayerDeadAnimation _deadAnim;
 	const float _speed = 7.0f;
 	const Vector2 _iniPos = Vector2(50, 526);
 	float _textureWidth;
@@ -31,10 +32,11 @@ public:
 	void Debug();
 	void SetGoal(const bool goal);
 	void CollisionStage(float x, float y);
-	bool IsDead() const { return _dead; }
+	bool IsDead()  { return _dead; }
 	CRectangle GetCollisionRect() const { return _collisionRect; }
 	CRectangle GetJumpRect() const { return  _jumpRect; }
 	void SetScoll(const float scroll) { _scroll = scroll; }
+	void RenderEffect();
 private:
 	void Move();
 	void Jump();

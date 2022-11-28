@@ -1,8 +1,8 @@
 #include "PlayerDeadAnimation.h"
 void PlayerDeadAnimation::Initialize() 
 {
+	_deadAnimation.Load(_deadAnimationTexture.c_str());
 	SpriteAnimationCreate _deadAnimation[] = {
-		
 		{
 			"dead",
 			0,0,
@@ -11,41 +11,45 @@ void PlayerDeadAnimation::Initialize()
 		},
 	};
 	_controller.Create(_deadAnimation, 1);
+	_controller.ChangeMotion(0);
 }
 
 void  PlayerDeadAnimation::SetStatu()
 {
-	_showRect = _controller.GetSrcRect();
-	_pos.x = _playerPos.x - _showRect.GetWidth()/2;
-	_pos.y = _playerPos.y - _showRect.GetHeight()/2;
-	_show = true;
-	_controller.ChangeMotion(0);
+	_pos.x = _playerPos.x - _showRect.GetWidth()/8;
+	_pos.y = _playerPos.y - _showRect.GetHeight()/4;
 }
 
 void PlayerDeadAnimation::Update() 
 {
-	if (!IsShow())
-	{
-		return;
-	}
+	
 	_controller.AddTimer(CUtilities::GetFrameSecond());
+	SetStatu();
 	_showRect = _controller.GetSrcRect();
+
 	if (_controller.IsEndMotion())
 	{
-		_show = false;
+		_controller.ChangeMotion(0);
+		
 	}
+		
+	
+
+	
 }
 
 void PlayerDeadAnimation::Render() 
 {
-	if (!IsShow())
-	{
-		return;
-	}
-	_deadAnimation.Render(_pos.x - _worldPos, _pos.y, _showRect);
+
+		_deadAnimation.Render(_pos.x - _worldPos, _pos.y, _showRect);
+	
+		
+	
 }
 
 void PlayerDeadAnimation::Release() 
 {
+
 	_deadAnimation.Release();
+	_controller.Release();
 }

@@ -167,7 +167,7 @@ void Stage::Render(void) {
 		_player.SetScoll(GetScrollX());
 		_player.Render();
 	}
-
+	_player.RenderEffect();
 }
 
 void Stage::Debug()

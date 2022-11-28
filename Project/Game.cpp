@@ -71,7 +71,7 @@ void Game::SceneChange()
 
 void Game::PlayerDeathUpdate()
 {
-	if (_stage.IsDead())
+	if (false)//_stage.IsDead())
 	{
 		_deathCount.count(1);
 		_stage.Initialize();

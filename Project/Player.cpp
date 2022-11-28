@@ -11,18 +11,19 @@ void Player::Initialize()
 	_textureHeight = _texture.GetHeight();
 	RectUpdate();
 	_deadAnim.Initialize();
+	
 }
 
 void Player::Update()
 {
-	if (!_goal)
+	
+	if (!_goal&&!IsDead())
 	{
 		Move();
 	}
-
+	_deadAnim.Update();
 	Jump();
 	RectUpdate();
-	_deadAnim.Update();
 }
 
 void Player::Move()
@@ -51,8 +52,15 @@ void Player::Render()
 {
 	_deadAnim.SetPlayerPos(_pos);
 	_deadAnim.SetWorldPos(_scroll);
-	_texture.Render(_pos.x - _scroll, _pos.y);
+	_texture.Render(_pos.x - _scroll, _pos.y);	
 }
+
+void Player::RenderEffect()
+{
+	if(IsDead())
+	_deadAnim.Render();
+}
+
 
 void Player::CollisionStage(float x, float y)
 {
@@ -64,6 +72,7 @@ void Player::CollisionStage(float x, float y)
 void Player::Release()
 {
 	_texture.Release();
+	_deadAnim.Release();
 }
 
 void Player::Debug()

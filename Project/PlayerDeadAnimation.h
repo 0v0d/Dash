@@ -10,7 +10,6 @@ private:
 	Vector2 _pos;
 	Vector2 _playerPos;
 	float _worldPos;
-	bool _show;
 	CRectangle _showRect;
 public:
 	void Initialize();
@@ -19,7 +18,6 @@ public:
 	void Release();
 	void SetPlayerPos(Vector2 playerPos) { _playerPos = playerPos; }
 	void SetWorldPos(float worldPos) { _worldPos = worldPos; }
-	void SetStatu();
 private:
-	bool IsShow() { return _show; }
+	void SetStatu();
 };
