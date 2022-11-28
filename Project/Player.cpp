@@ -21,7 +21,15 @@ void Player::Update()
 	{
 		Move();
 	}
-	_deadAnim.Update();
+	_deadAnim.SetShow(IsDead());
+	if(IsDead())
+	{
+		_deadAnim.SetStatu();
+		_deadAnim.Update();
+		
+	}
+	
+	
 	Jump();
 	RectUpdate();
 }
