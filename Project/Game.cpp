@@ -71,11 +71,15 @@ void Game::SceneChange()
 
 void Game::PlayerDeathUpdate()
 {
-	if (false)//_stage.IsDead())
+	if (_stage.IsEndMotion())
+	{
+		
+		_stage.StageObjectInitalize();
+		_time.Initialize();
+	}
+	if(_stage.IsDead())
 	{
 		_deathCount.count(1);
-		_stage.Initialize();
-		_time.Initialize();
 	}
 }
 

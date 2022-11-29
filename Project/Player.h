@@ -23,6 +23,7 @@ private:
 	CRectangle _collisionRect;
 	CRectangle _jumpRect;
 	const Vector2 _debugPos = Vector2(10, 70);
+	bool _endMotion;
 public:
 	void Initialize();
 	void Update();
@@ -32,11 +33,13 @@ public:
 	void Debug();
 	void SetGoal(const bool goal);
 	void CollisionStage(float x, float y);
-	bool IsDead()  { return _dead; }
+	bool IsDead() const { return _dead; }
 	CRectangle GetCollisionRect() const { return _collisionRect; }
 	CRectangle GetJumpRect() const { return  _jumpRect; }
 	void SetScoll(const float scroll) { _scroll = scroll; }
 	void RenderEffect();
+	void SetEndMotion(bool endMotion){ _endMotion = endMotion; }
+	bool IsEndMotion() { return _endMotion; }
 private:
 	void Move();
 	void Jump();

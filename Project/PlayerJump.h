@@ -3,8 +3,8 @@
 
 class PlayerJump
 {
-	const float	_gravity = 0.7;
-	const float _jumpValue = -12;
+	const float	_gravity = 0.7f;
+	const float _jumpValue = -12.0f;
 	float	_moveY = 0;
 	bool _jump;
 public:

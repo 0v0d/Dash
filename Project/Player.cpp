@@ -11,25 +11,21 @@ void Player::Initialize()
 	_textureHeight = _texture.GetHeight();
 	RectUpdate();
 	_deadAnim.Initialize();
-	
+	_endMotion = false;
 }
 
 void Player::Update()
 {
-	
 	if (!_goal&&!IsDead())
 	{
 		Move();
 	}
-	_deadAnim.SetShow(IsDead());
 	if(IsDead())
 	{
-		_deadAnim.SetStatu();
 		_deadAnim.Update();
-		
+		SetEndMotion(IsEndMotion());
 	}
-	
-	
+
 	Jump();
 	RectUpdate();
 }

@@ -34,7 +34,9 @@ private:
 	FILE* _file;
 	int _chipTextureSizeX;
 	const Vector2 _debugPos = Vector2(10, 100);
+	bool _endMotion;
 public:
+	void StageObjectInitalize();
 	void SetStage(int stageNo);
 	void Load(char* stageName);
 	void Initialize();
@@ -46,4 +48,6 @@ public:
 	bool IsDead();
 	bool IsGoal();
 	float GetScrollX();
+	void SetEndMotion(bool endMotion) { _endMotion = endMotion; }
+	bool IsEndMotion() { return _endMotion; }
 };

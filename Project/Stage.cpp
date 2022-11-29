@@ -47,6 +47,15 @@ void Stage::Load(char* stageName)
 	delete _buffer;
 }
 
+void Stage::StageObjectInitalize()
+{
+	_player.Initialize();
+	_dead = false;
+	_goal = false;
+	_scrollX = 0;
+	_endMotion = false;
+}
+
 void Stage::Initialize()
 {
 	_screenWidth = g_pGraphics->GetTargetWidth();
@@ -54,16 +63,14 @@ void Stage::Initialize()
 	_backTextureWidth = _backTexture.GetWidth();
 	_backTextureHeight = _backTexture.GetHeight();
 	_stageSizeX = _chipSize * _xSize;
-	_player.Initialize();
-	_scrollX = 0;
-	_dead = false;
-	_goal = false;
 }
 
 void Stage::Update()
 {
 	_player.Update();
+	SetEndMotion(_player.IsEndMotion());
 	_player.SetDead(IsDead());
+	
 	float ox = 0, oy = 0;
 	if (Collision(_player.GetCollisionRect(), _player.GetJumpRect(), ox, oy))
 	{
@@ -201,3 +208,4 @@ float Stage::GetScrollX()
 {
 	return _scrollX;
 }
+
